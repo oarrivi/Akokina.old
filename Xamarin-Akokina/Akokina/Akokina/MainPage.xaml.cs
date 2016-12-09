@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Akokina.ViewModel;
+using GalaSoft.MvvmLight.Ioc;
+using GalaSoft.MvvmLight.Views;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,6 +14,7 @@ namespace Akokina
     {
         public MainPage()
         {
+            this.BindingContext = new MainViewModel(SimpleIoc.Default.GetInstance<INavigationService>());
             InitializeComponent();
         }
     }

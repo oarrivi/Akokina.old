@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:renders="clr-namespace:Akokina.Renderers"
+             x:Class="Akokina.View.LastMovementsPage"
+             Title="{ Binding Title }">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Sincronizar" Command="{ Binding SynchronizeCommand }" />
+    </ContentPage.ToolbarItems>
+
+    <ContentView ControlTemplate="{ StaticResource Key=AppThemeTemplate }">
+        <ListView ItemsSource="{ Binding DataSource }">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid Padding="3">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+
+                            <!-- User initials -->
+                            <renders:EllipseView Grid.Column="0"
+                                                 Color="White" HeightRequest="40" WidthRequest="40" />
+                            <Label Grid.Column="0"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center"
+                                   Text="{ Binding User }" FontSize="Large" />
+
+                            <!-- Title -->
+                            <Label Grid.Column="1"
+                                   VerticalOptions="Center"
+                                   Text="{ Binding Title }" FontSize="Medium">
+                                <Label.Triggers>
+                                    <DataTrigger TargetType="Label"
+                                                 Binding="{ Binding IsCurrentUser }"
+                                                 Value="True">
+                                        <Setter Property="FontAttributes" Value="Bold" />
+                                    </DataTrigger>
+                                </Label.Triggers>
+                            </Label>
+
+                            <!-- Amount -->
+                            <Label Grid.Column="2"
+                                   VerticalOptions="Center"
+                                   HorizontalTextAlignment="End"
+                                   FontSize="Large"
+                                   Text="{ Binding Amount, StringFormat='{0:C}' }" />
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </ContentView>
+</ContentPage>

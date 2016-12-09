@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:Akokina.ViewModel"
+             x:Class="Akokina.View.SettingsPage"
+             Title="{ Binding Title }">
+
+    <ContentView ControlTemplate="{ StaticResource Key=AppThemeTemplate }">
+        <ScrollView Padding="2,10,1,0">
+            <StackLayout Orientation="Vertical">
+                <Label Text="Email" />
+                <Entry Text="{ Binding UserName }"
+                       IsEnabled="{ Binding Path=IsBusy, Converter={ StaticResource NegativeBooleanConverter } }"
+                       Placeholder="Correo electrónico de identificación"
+                       Keyboard="Email"/>
+
+                <Label Text="Nombre" />
+                <Entry Text="{ Binding UserFullName }"
+                       IsEnabled="{ Binding Path=IsBusy, Converter={ StaticResource NegativeBooleanConverter } }"
+                       Placeholder="Nombre completo"
+                       Keyboard="Text"/>
+
+                <Label Text="Iniciales" />
+                <Entry Text="{ Binding UserInitials }"
+                       IsEnabled="{ Binding Path=IsBusy, Converter={ StaticResource NegativeBooleanConverter } }"
+                       Placeholder="Una o dos letras que te identifiquen"
+                       Keyboard="Text"/>
+
+                <Label Text="Servidor" />
+                <Entry Text="{ Binding WebServerUri }"
+                       IsEnabled="{ Binding Path=IsBusy, Converter={ StaticResource NegativeBooleanConverter } }"
+                       Placeholder="URL del servidor"
+                       Keyboard="Url"/>
+
+                <ActivityIndicator IsVisible="{ Binding IsBusy }"/>
+
+                <Button Text="Ok" Command="{ Binding CommitChangesCommand }"
+                        HorizontalOptions="Center" />
+
+                <Label Text="{ Binding ValidationMessage }"
+                       TextColor="Red" />
+            </StackLayout>
+        </ScrollView>
+    </ContentView>
+
+</ContentPage>

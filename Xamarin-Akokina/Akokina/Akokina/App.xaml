@@ -1,10 +1,39 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Application xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:helpers="clr-namespace:Akokina.Helpers"
              x:Class="Akokina.App">
     <Application.Resources>
 
         <!-- Application resource dictionary -->
+        <ResourceDictionary>
+
+            <helpers:NegativeBooleanConverter x:Key="NegativeBooleanConverter" />
+
+            <!-- Main Theme -->
+            <ControlTemplate x:Key="AppThemeTemplate">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <ContentPresenter Grid.Row="0" Grid.Column="0" />
+
+                    <BoxView Grid.Row="1" Grid.Column="0"
+                             Color="Orange" />
+                    <Label Grid.Row="1" Grid.Column="0"
+                           Margin="5,0"
+                           Text="akokina 2016"
+                           FontSize="Micro"
+                           TextColor="Gray"
+                           VerticalOptions="Center" />
+                </Grid>
+            </ControlTemplate>
+        </ResourceDictionary>
 
     </Application.Resources>
 </Application>

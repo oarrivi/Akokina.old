@@ -1,7 +1,9 @@
 ﻿{
   "dependencies": {
+    "MvvmLightLibs": "5.3.0",
     "Newtonsoft.Json": "9.0.1",
     "Xam.Plugin.Connectivity": "2.2.12",
+    "Xam.Plugins.Settings": "2.5.1",
     "Xamarin.Forms": "2.3.3.175"
   },
   "frameworks": {

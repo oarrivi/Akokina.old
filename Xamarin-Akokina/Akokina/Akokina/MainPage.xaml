@@ -4,6 +4,12 @@
              xmlns:local="clr-namespace:Akokina"
              x:Class="Akokina.MainPage">
 
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Configuración" Command="{ Binding OpenSettingsCommand }" />
+        <ToolbarItem Text="Resumen"/>
+        <ToolbarItem Text="Últimas entradas" Command="{ Binding OpenLastMovementsCommand }" />
+    </ContentPage.ToolbarItems>
+
     <Label Text="Welcome to Xamarin Forms!"
            VerticalOptions="Center"
            HorizontalOptions="Center" />
