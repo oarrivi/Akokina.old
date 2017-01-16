@@ -12,6 +12,10 @@ namespace Akokina.Services
 
     public interface IDataService
     {
+        User FindUser(int id);
+
+        IEnumerable<User> GetUsers();
+
         IEnumerable<Movement> GetMovementsFromLocal();
 
         Task<bool> SynchronizeMovementsAsync(int maxItems);
@@ -34,6 +38,18 @@ namespace Akokina.Services
             {
                 return Helpers.Settings.WebServerUri;
             }
+        }
+
+        public User FindUser(int id)
+        {
+            IEnumerable<User> users = this.GetUsers();
+
+            return users.FirstOrDefault(user => user.Id == id);
+        }
+
+        public IEnumerable<User> GetUsers()
+        {
+
         }
 
         public async Task<bool> SynchronizeUsersAsync()
@@ -128,8 +144,8 @@ namespace Akokina.Services
 
             return new User[]
             {
-                new Model.User { Id = 1, Username = "user1", Initials = "U1", FullName = "User 1" },
-                new Model.User { Id = 2, Username = "user2", Initials = "U2", FullName = "User 2" },
+                new Model.User { Id = 1, Username = "user1", Initials = "U1", Email = "User 1" },
+                new Model.User { Id = 2, Username = "user2", Initials = "U2", Email = "User 2" },
             };
         }
 

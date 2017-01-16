@@ -160,10 +160,10 @@ namespace Akokina.ViewModel
                 return;
             }
 
-            if (_dataService.SynchronizeMovements(maxMovementsToDownload))
-            {
-                this.LoadLocalDataCommand.Execute(null);
-            }
+            //if (_dataService.SynchronizeMovements(maxMovementsToDownload))
+            //{
+            //    this.LoadLocalDataCommand.Execute(null);
+            //}
         }
 
         #endregion

@@ -1,7 +1,7 @@
-﻿using Akokina.Services;
+﻿using Akokina.Infrastructure;
+using Akokina.Services;
 using Akokina.ViewModel;
 using GalaSoft.MvvmLight.Ioc;
-using GalaSoft.MvvmLight.Views;
 using Microsoft.Practices.ServiceLocation;
 using System;
 using System.Collections.Generic;
@@ -27,12 +27,10 @@ namespace Akokina
             SimpleIoc.Default.Register<IDataService>(() => dataService);
 
             // Configure Navigation Service
-            Services.NavigationService navigationService = ConfigureNavigationService();
-            SimpleIoc.Default.Register<INavigationService>(() => navigationService);
-
             MainPage mainPage = new MainPage();
             var initPage = new View.BaseNavigationPage(mainPage);
-            navigationService.Initialize(initPage);
+            NavigationService navigationService = ConfigureNavigationService(initPage);
+            SimpleIoc.Default.Register<INavigationService>(() => navigationService);
 
             MainPage = initPage;
 
@@ -43,13 +41,13 @@ namespace Akokina
             }
         }
 
-        private Services.NavigationService ConfigureNavigationService()
+        private NavigationService ConfigureNavigationService(NavigationPage navigationPage)
         {
-            var service = new Services.NavigationService();
+            var service = new NavigationService(navigationPage);
 
-            service.Configure(Constants.MainPageKey, typeof(MainPage));
-            service.Configure(Constants.SettingsPageKey, typeof(View.SettingsPage));
-            service.Configure(Constants.LastMovementsPageKey, typeof(View.LastMovementsPage));
+            service.Map(Constants.MainPageKey, typeof(MainPage));
+            service.Map(Constants.SettingsPageKey, typeof(View.SettingsPage));
+            service.Map(Constants.LastMovementsPageKey, typeof(View.LastMovementsPage));
 
             return service;
         }

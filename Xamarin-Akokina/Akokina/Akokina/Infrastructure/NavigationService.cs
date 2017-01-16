@@ -1,28 +1,25 @@
-﻿using GalaSoft.MvvmLight.Views;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xamarin.Forms;
 using System.Reflection;
 
-namespace Akokina.Services
+namespace Akokina.Infrastructure
 {
     public class NavigationService : INavigationService
     {
         private readonly Dictionary<string, Type> _pages = new Dictionary<string, Type>();
         private Xamarin.Forms.NavigationPage _navigation = null;
-        private object _syncLock = new object();
+        private object _lock = new object();
 
-        public void Initialize(NavigationPage navigationPage)
+        public NavigationService(NavigationPage navigation)
         {
-            _navigation = navigationPage;
+            _navigation = navigation;
         }
 
-        public void Configure(string pageKey, Type pageType)
+        public void Map(string pageKey, Type pageType)
         {
-            lock (_syncLock)
+            lock (_lock)
             {
                 if (_pages.ContainsKey(pageKey))
                 {
@@ -46,7 +43,7 @@ namespace Akokina.Services
                     return null;
                 }
 
-                lock (_syncLock)
+                lock (_lock)
                 {
                     if (_navigation.CurrentPage == null)
                     {
@@ -84,15 +81,19 @@ namespace Akokina.Services
                 return;
             }
 
-            lock (_syncLock)
+            if (pageKey == this.CurrentPageKey)
             {
+                return;
+            }
 
+            lock (_lock)
+            {
                 if (_pages.ContainsKey(pageKey))
                 {
                     Type pageType = _pages[pageKey];
 
                     System.Reflection.ConstructorInfo pageConstructor = null;
-                    object[] constructorArgs = new object[] { };
+                    object[] constructorArgs = { };
 
                     // Creates a page constructor based on page key and parameters
                     if (parameter == null)

@@ -10,7 +10,9 @@ namespace Akokina.Model
     {
         public int Id { get; set; }
         public string Username { get; set; }
-        public string FullName { get; set; }
+        public string Email { get; set; }
         public string Initials { get; set; }
+        public string Color { get; set; }
+        public int Avatar { get; set; }
     }
 }

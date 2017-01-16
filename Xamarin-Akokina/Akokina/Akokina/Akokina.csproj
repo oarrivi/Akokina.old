@@ -41,15 +41,19 @@
     <Compile Include="Constants.cs" />
     <Compile Include="Helpers\NegativeBooleanConverter.cs" />
     <Compile Include="Helpers\Settings.cs" />
+    <Compile Include="Infrastructure\INavigationService.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\Movement.cs" />
+    <Compile Include="Model\SettingsController.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Renderers\EllipseView.cs" />
     <Compile Include="Services\DataService.cs" />
-    <Compile Include="Services\NavigationService.cs" />
+    <Compile Include="Infrastructure\NavigationService.cs" />
+    <Compile Include="Services\LocalDataService.cs" />
+    <Compile Include="Services\LocalStorage.cs" />
     <Compile Include="ViewModel\LastMovementsViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\MovementListItemViewModel.cs" />

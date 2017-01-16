@@ -1,4 +1,6 @@
 ﻿using Akokina.Helpers;
+using Akokina.Model;
+using Akokina.Services;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Ioc;
@@ -14,15 +16,31 @@ namespace Akokina.ViewModel
     public class SettingsViewModel : ViewModelBase
     {
         readonly INavigationService _navigationService = null;
-        public SettingsViewModel(INavigationService navigationService)
+        readonly ISettingsController _settingsController = null;
+
+
+        public SettingsViewModel(INavigationService navigationService, ISettingsController settingsController)
         {
             _navigationService = navigationService;
+            _settingsController = settingsController;
             Initialize();
         }
 
         void Initialize()
         {
             IsBusy = false;
+
+            User currentUser = _settingsController.CreateOrLoadCurrentUser();
+
+            if (Settings.UserId == 0)
+            {
+                currentUser
+            }
+            else
+            {
+
+            }
+            var currentUser = _dataService.FindUser(Settings.UserId);
 
             this.UserId = Settings.UserId;
             this.UserName = Settings.UserName;

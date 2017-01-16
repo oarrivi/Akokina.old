@@ -39,66 +39,6 @@ namespace Akokina.Helpers
 
         #endregion
 
-        #region UserName
-
-        private const string UserNameKey = "user_name_key";
-
-        private static readonly string UserNameDefault = string.Empty;
-
-        public static string UserName
-        {
-            get
-            {
-                return AppSettings.GetValueOrDefault<string>(UserNameKey, UserNameDefault);
-            }
-            set
-            {
-                AppSettings.AddOrUpdateValue<string>(UserNameKey, value);
-            }
-        }
-
-        #endregion
-
-        #region UserFullName 
-
-        private const string UserFullNameKey = "user_full_name_key";
-
-        private static readonly string UserFullNameDefault = string.Empty;
-
-        public static string UserFullName
-        {
-            get
-            {
-                return AppSettings.GetValueOrDefault<string>(UserFullNameKey, UserFullNameDefault);
-            }
-            set
-            {
-                AppSettings.AddOrUpdateValue<string>(UserFullNameKey, value);
-            }
-        }
-
-        #endregion
-
-        #region UserInitials
-
-        private const string UserInitialsKey = "user_initials_key";
-
-        private static string UserInitialsDefault = string.Empty;
-
-        public static string UserInitials
-        {
-            get
-            {
-                return AppSettings.GetValueOrDefault<string>(UserInitialsKey, UserInitialsDefault);
-            }
-            set
-            {
-                AppSettings.AddOrUpdateValue<string>(UserInitialsKey, value);
-            }
-        }
-
-        #endregion
-
         #region WebServerUri
 
         private const string WebServerUriKey = "web_server_uri_key";
@@ -121,7 +61,7 @@ namespace Akokina.Helpers
 
         public static bool IsNullOrEmpty()
         {
-            return (string.IsNullOrEmpty(UserName) || string.Equals(UserName, UserIdDefault)) &&
+            return (UserId == UserIdDefault) ||
                    (string.IsNullOrEmpty(WebServerUri) || string.Equals(WebServerUri, WebServerUriDefault));
         }
     }
